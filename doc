@@ -1,3 +1,7 @@
 #Eleccions generals 
 ## Importació de les dades
 ### Introducció de dades bàsiques
+Hem hagut d'insertar una elecció de la seguent manera:
+INSERT INTO eleccions(nom,data)
+	VALUES ('Elecciones al Congreso de los Diputados','2016-06-26');
+  
