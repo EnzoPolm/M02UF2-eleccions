@@ -1,10 +1,19 @@
 #Eleccions generals 
 ## Importació de les dades
 ### Introducció de dades bàsiques
-Hem hagut d'insertar una elecció de la seguent manera:
-INSERT INTO eleccions(nom,data)
-	VALUES ('Elecciones al Congreso de los Diputados','2016-06-26');
-	
+	Hem hagut d'insertar una elecció de la seguent manera:
+	INSERT INTO eleccions(nom,data)
+		VALUES ('Elecciones al Congreso de los Diputados','2016-06-26');
+
+### A tots els programes es repeteix la part seguent que consisteix en connectar-se al servidor i per tant ho documentarem una vegada:
+	import mysql.connector
+
+	mydb = mysql.connector.connect(
+	  host="192.168.56.103",
+	  user="perepi",
+	  passwd="pastanaga",
+	  database="mydb"
+	)
 ### Importació de comunitats autònomes, províncies i municipis
 
 *
@@ -16,43 +25,29 @@ INSERT INTO eleccions(nom,data)
 ### Importació de partits polítics/candidatures
 Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 03021606.DAT i executar el següent script:
 
-#Conectar con el servidor
+	mycursor = mydb.cursor()
 
-import mysql.connector
+	archivo = open(r"C:\Users\david\Desktop\Pràctica BDD\candidaturas.dat")
 
-mydb = mysql.connector.connect(
-  host="192.168.56.103",
-  user="perepi",
-  passwd="pastanaga",
-  database="mydb"
-)
+	#Candidatures
 
+	for x in archivo:
+	    codi_candidatura = x[8:14]
+	    sigles_candidatura = x[14:64]
+	    denom_candidatura = x[64:214]
+	    cod_acom_provi = x[214:220]
+	    cod_acom_auto = x[220:226]
+	    cod_acom_naci = x[226:232]
 
-mycursor = mydb.cursor()
+	    select = mycursor.execute("SELECT eleccio_id FROM eleccions")
+	    fetch = mycursor.fetchone()
+	    fetch = " ".join(map(str,fetch))
 
-#----------------------------------------------------------------------------------
+	    print(codi_candidatura.strip(), ",", sigles_candidatura.strip(), ",", denom_candidatura.strip(), ",", cod_acom_provi.strip(), ",", cod_acom_auto.strip(), ",", cod_acom_naci)
+	    insert = ("INSERT INTO candidatures (codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca, codi_acumulario_nacional, eleccio_id) VALUES (%s,%s,%s,%s,%s,%s,%s)")
+	    valores = [codi_candidatura, sigles_candidatura, denom_candidatura, cod_acom_provi, cod_acom_auto, cod_acom_naci, fetch]
+	    mycursor.execute(insert,valores)
 
-archivo = open(r"C:\Users\david\Desktop\Pràctica BDD\candidaturas.dat")
+	mydb.commit()
 
-#Candidatures
-
-for x in archivo:
-    codi_candidatura = x[8:14]
-    sigles_candidatura = x[14:64]
-    denom_candidatura = x[64:214]
-    cod_acom_provi = x[214:220]
-    cod_acom_auto = x[220:226]
-    cod_acom_naci = x[226:232]
-    
-    select = mycursor.execute("SELECT eleccio_id FROM eleccions")
-    fetch = mycursor.fetchone()
-    fetch = " ".join(map(str,fetch))
-
-    print(codi_candidatura.strip(), ",", sigles_candidatura.strip(), ",", denom_candidatura.strip(), ",", cod_acom_provi.strip(), ",", cod_acom_auto.strip(), ",", cod_acom_naci)
-    insert = ("INSERT INTO candidatures (codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca, codi_acumulario_nacional, eleccio_id) VALUES (%s,%s,%s,%s,%s,%s,%s)")
-    valores = [codi_candidatura, sigles_candidatura, denom_candidatura, cod_acom_provi, cod_acom_auto, cod_acom_naci, fetch]
-    mycursor.execute(insert,valores)
-
-mydb.commit()
-print(mycursor.rowcount, "Se inserto correctamente!.")
   
