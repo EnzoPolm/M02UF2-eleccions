@@ -83,5 +83,6 @@ Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 0
 	    mycursor.execute(insert,valores)
 
 	mydb.commit()
+	
 
   
