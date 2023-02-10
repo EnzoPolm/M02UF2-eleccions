@@ -14,13 +14,47 @@
 	  passwd="pastanaga",
 	  database="mydb"
 	)
-### Importació de comunitats autònomes, províncies i municipis
-
-*
-*
-*
-*
-*
+### Importació de comunitats autònomes, províncies i municipis:
+	Comunitats autónomes:
+	
+	mycursor = mydb.cursor()
+	for i in f:
+	    if i[9:14] == "99999":
+		continue
+	    elif i[11:13] == "99":
+		nom_CA = i[14:63]
+		cod_CA = i[9:11]
+		print(nom_CA.strip(),",", cod_CA)
+		sql = "INSERT INTO comunitats_autonomes (nom, codi_ine) VALUES (%s, %s)"
+		val = [nom_CA.strip(), cod_CA]
+		mycursor.execute(sql, val)
+	    else:
+		continue
+	mydb.commit()
+	
+	Províncies:
+	mycursor = mydb.cursor()
+	for i in f:
+	    if i[9:14] == "99999":
+		continue
+	    elif i[11:13] != "99":
+		nom_prov = i[14:63]
+		cod_ine = i[11:13]
+		cod_ca = i[9:11]
+		escons = i[149:154]
+		print(nom_prov)
+		query = ("SELECT comunitat_aut_id FROM comunitats_autonomes WHERE %s = codi_ine")
+		dades = [cod_ca]
+		mycursor.execute(query, dades)
+		com_aut_id = mycursor.fetchone()
+		com_aut_id = " ".join(map(str,com_aut_id))
+		print(nom_prov, cod_ine, cod_ca, escons, com_aut_id)
+		sql = "INSERT INTO provincies (comunitat_aut_id, nom, codi_ine, num_escons) VALUES (%s, %s, %s, %s)"
+		val = [com_aut_id, nom_prov.strip(), cod_ine, escons]
+		mycursor.execute(sql, val)
+	    else:
+		continue
+	mydb.commit()
 
 ### Importació de partits polítics/candidatures
 Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 03021606.DAT i executar el següent script:
