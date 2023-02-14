@@ -1,5 +1,8 @@
 #Eleccions generals 
 ## Importació de les dades
+### Modificació de l'script sql
+	Per poder posar la taula de persones hem hagut de posar persona_id com a AUTO_INCREMENT i el dni com a NULLABLE
+
 ### Introducció de dades bàsiques
 	Hem hagut d'insertar una elecció de la seguent manera:
 	INSERT INTO eleccions(nom,data)
@@ -84,5 +87,5 @@ Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 0
 
 	mydb.commit()
 	
-
+	
   
