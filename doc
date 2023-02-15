@@ -1,7 +1,7 @@
 #Eleccions generals 
 ## APARTAT 1: Importació de les dades
 ### Modificació de l'script sql
-	Per poder posar la taula de persones hem hagut de posar persona_id com a AUTO_INCREMENT i el dni com a NULLABLE
+	Per poder posar la taula de persones hem hagut de posar persona_id com a AUTO_INCREMENT i el dni com a NULLABLE i sense la UK
 
 ### Introducció de dades bàsiques
 	Hem hagut d'insertar una elecció de la seguent manera:
@@ -89,7 +89,19 @@ Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 0
 	
 
 ### Importació de candidats i persones:
+	Persones:
+	mycursor = mydb.cursor()
 
+	for i in f:
+	    nom = i[25:49]
+	    cognom = i[50:74]
+	    segcognom = i[75:99]
+	    dni = i[109:118]
+
+	    sql = "INSERT INTO persones (nom,cog1,cog2,dni) VALUES (%s, %s, %s, %s)"
+	    val = [nom,cognom,segcognom,dni]
+	    mycursor.execute(sql, val)
+	    mydb.commit()
 
 
 
@@ -164,8 +176,6 @@ Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 0
 
 ### Categoria 1: 5 preguntes de consultes simples: inclou una sola taula, funcions, funcions d'agregat o grups:
 
-Selecciona candidatura_id, codi_candidatura, nom_curt, nom_llarg de candidatures on el nom de la candidatura conte 'partido socialista'.
-
 SELECT candidatura_id, codi_candidatura, nom_curt, nom_llarg
 	FROM candidatures
 WHERE nom_llarg LIKE '%partido socialista%'
@@ -173,37 +183,11 @@ ORDER BY candidatura_id;
 
 /*-------------------------------------------------------------------------*/
 
-Selecciona codi_ine de les comunitats autonomes que es diguin Extremadura.
-
 SELECT codi_ine AS codi_INE_extremadura
 	FROM comunitats_autonomes
 WHERE nom = 'extremadura';
 
 /*-------------------------------------------------------------------------*/
-
-Selecciona candidat_id, persona_id, provincia_id dels candidats que tinguin el candidat_id entre 6 i 15.
-
-SELECT candidat_id, persona_id, provincia_id
-	FROM candidats
-WHERE candidat_id BETWEEN 6 AND 15;
-
-/*-------------------------------------------------------------------------*/
-
-Selecciona persona_id, primer cognom, segon cognom i nom de les persones que el seu primer cognom sigui Martínez o Ruiz.
-
-SELECT persona_id, cog1, cog2, nom
-	FROM persones
-WHERE cog1 = 'Martínez' OR cog1 = 'Ruiz'
-ORDER BY persona_id;
-
-/*-------------------------------------------------------------------------*/
-
-Seleccionar provincia_id, nom, codi_ine de les provincies que continguin 'illa' en el seu nom.
-
-SELECT provincia_id, nom, codi_ine
-	FROM provincies
-WHERE nom LIKE '%illa%';
-
 
 ### Categoria 2: 5 preguntes de consultes de combinacions de més d'una taula: INNER JOINS, LEFT JOINS:
 
