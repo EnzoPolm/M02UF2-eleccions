@@ -1,5 +1,5 @@
 #Eleccions generals 
-## Importació de les dades
+## APARTAT 1: Importació de les dades
 ### Modificació de l'script sql
 	Per poder posar la taula de persones hem hagut de posar persona_id com a AUTO_INCREMENT i el dni com a NULLABLE
 
@@ -87,5 +87,58 @@ Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 0
 
 	mydb.commit()
 	
-	
+
+### Importació de candidats i persones:
+
+
+
+
+
+### Importació de vots a nivell municipal:
+
+
+
+
+### Importació de vots a nivell provincial:
+
+
+
+
+### Importació de vots a nivell autonòmic:
+
+
+
+
+## APARTAT 2: Creació de sentències de consulta SQL:
+
+### Categoria 1: 5 preguntes de consultes simples: inclou una sola taula, funcions, funcions d'agregat o grups:
+
+SELECT candidatura_id, codi_candidatura, nom_curt, nom_llarg
+	FROM candidatures
+WHERE nom_llarg LIKE '%partido socialista%'
+ORDER BY candidatura_id;
+
+/*-------------------------------------------------------------------------*/
+
+SELECT codi_ine AS codi_INE_extremadura
+	FROM comunitats_autonomes
+WHERE nom = 'extremadura';
+
+/*-------------------------------------------------------------------------*/
+
+### Categoria 2: 5 preguntes de consultes de combinacions de més d'una taula: INNER JOINS, LEFT JOINS:
+
+
+
+### Categoria 3: 5 preguntes fent ús de subconsultes:
+
+
+
+### Categoria 4: 1 pregunta utilitzant WINDOW FUNCTIONS o recursivitat:
   
+
+
+## APARTAT 5: Llei d'hondt:
+
+Implementa un programa que mostri el nº d’escons per una província passada per paràmetre.
+
