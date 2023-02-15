@@ -58,6 +58,24 @@
 	    else:
 		continue
 	mydb.commit()
+	
+	Municipis:
+	mycursor = mydb.cursor()
+	for i in f:
+	    nom= i[18:118]
+	    INE_mun= i[13:16]
+	    INE_prov= i[11:13]
+	    Distr= i[16:18]
+	    query = ("SELECT provincia_id FROM provincies WHERE %s = codi_ine")
+	    dades = [INE_prov]
+	    mycursor.execute(query, dades)
+	    prov_id = mycursor.fetchone()
+	    prov_id = " ".join(map(str, prov_id))
+	    print(nom.strip(), INE_prov, INE_mun, Distr, prov_id)
+	    sql = "INSERT INTO municipis (nom, codi_ine, provincia_id, districte) VALUES (%s, %s, %s, %s)"
+	    val = [nom.strip(), INE_mun, prov_id, Distr]
+	    mycursor.execute(sql, val)
+	mydb.commit()
 
 ### Importació de partits polítics/candidatures
 Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 03021606.DAT i executar el següent script:
