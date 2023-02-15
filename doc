@@ -167,7 +167,7 @@ Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 0
 	mydb.commit()
 
 
-### Importació de vots a nivell autonòmic:  (***************** DA ERROR **************)
+### Importació de vots a nivell autonòmic:  (***************** DA ERROR ****************)
 
 	mycursor = mydb.cursor(buffered=True)
 
