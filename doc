@@ -66,7 +66,7 @@ Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 0
 
 	archivo = open(r"C:\Users\david\Desktop\Pràctica BDD\candidaturas.dat")
 
-	#Candidatures
+	Candidatures:
 
 	for x in archivo:
 	    codi_candidatura = x[8:14]
@@ -96,12 +96,63 @@ Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 0
 
 ### Importació de vots a nivell municipal:
 
+	mycursor = mydb.cursor(buffered=True)
+	archivo = open(r"C:\Users\david\Desktop\Pràctica BDD\mesa 0220160\06021606.dat")
 
+	DATOS DE CANDIDATURAS DE MUNICIPIOS:
+
+	for x in archivo:
+    		vot_cand = x[22:30]
+    
+    		select = mycursor.execute("SELECT eleccio_id FROM eleccions")
+    		eleccio_id = mycursor.fetchone()
+    		eleccio_id = " ".join(map(str,eleccio_id))
+
+    		select1 = mycursor.execute("SELECT municipi_id FROM municipis")
+    		municipi_id = mycursor.fetchone()
+
+    		select2 = mycursor.execute("SELECT candidatura_id FROM candidatures")
+    		candidatura_id = mycursor.fetchone()
+    		candidatura_id = " ".join(map(str,candidatura_id))
+
+   		print(eleccio_id, ",", municipi_id, ",", candidatura_id, ",", vot_cand)
+    
+    		insert = ("INSERT INTO vots_candidatures_mun (eleccio_id, municipi_id, candidatura_id, vots) VALUES (%s,%s,%s,%s)")
+    		valores = [eleccio_id, municipi_id, candidatura_id, vot_cand]
+    
+   		mycursor.execute(insert,valores)
+
+	mydb.commit()
 
 
 ### Importació de vots a nivell provincial:
 
+	mycursor = mydb.cursor(buffered=True)
+	
+	archivo = open(r"C:\Users\david\Desktop\Pràctica BDD\mesa 0220160\08021606.dat")
 
+	DATOS DE CANDIDATURAS DE PROVINCIES:
+
+	for x in archivo:
+    		vot_prov = x[20:28]
+    		cand_obtin = x[28:33]
+    
+    		select3 = mycursor.execute("SELECT provincia_id FROM provincies")
+    		provincia_id = mycursor.fetchone()
+
+
+    		select4 = mycursor.execute("SELECT candidatura_id FROM candidatures")
+    		candidatura_id = mycursor.fetchone()
+    		candidatura_id = " ".join(map(str,candidatura_id))
+
+    		print(provincia_id, ",", candidatura_id, ",", vot_prov, ",", cand_obtin)
+    
+    		insert = ("INSERT INTO vots_candidatures_prov (provincia_id, candidatura_id, vots, candidats_obtinguts) VALUES (%s,%s,%s,%s)")
+    		valores = [provincia_id, candidatura_id, vot_prov, cand_obtin]
+    
+    		mycursor.execute(insert,valores)
+
+	mydb.commit()
 
 
 ### Importació de vots a nivell autonòmic:
