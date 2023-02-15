@@ -167,9 +167,31 @@ Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 0
 	mydb.commit()
 
 
-### Importació de vots a nivell autonòmic:
+### Importació de vots a nivell autonòmic:  (***************** DA ERROR **************)
+
+	mycursor = mydb.cursor(buffered=True)
+
+	archivo = open(r"C:\Users\david\Desktop\Pràctica BDD\mesa 0220160\08021606.dat")
+
+	DATOS DE CANDIDATURAS DE COMUNITATS AUTONOMES:
+
+	for x in archivo:
+    		vot_ca = x[20:28]
+    		comunitat_autonoma_id = x[9:11]
+
+    		select5 = mycursor.execute("SELECT candidatura_id FROM candidatures")
+    		candidatura_id = mycursor.fetchone()
+    		candidatura_id = " ".join(map(str,candidatura_id))
 
 
+    		print(comunitat_autonoma_id, ",", candidatura_id, ",", vot_ca)
+    
+    		insert = ("INSERT INTO vots_candidatures_ca (comunitat_autonoma_id, candidatura_id, vots) VALUES (%s,%s,%s)")
+    		valores = [comunitat_autonoma_id, candidatura_id, vot_ca]
+    
+    		mycursor.execute(insert,valores)
+
+	mydb.commit()
 
 
 ## APARTAT 2: Creació de sentències de consulta SQL:
