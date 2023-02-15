@@ -60,6 +60,12 @@
 	mydb.commit()
 	
 	Municipis:
+	
+	Hi han una sèrie de valors del codi INE dels municipis repetits i amb el mateix codi de districte, 
+	i per aixó hem optat per elimiar la contraint unique de la columna codi_ine amb la seguent snetència:
+	Alter table municipis 
+		DROP CONSTRAINT uk_municipis_codi_ine;
+	
 	mycursor = mydb.cursor()
 	for i in f:
 	    nom= i[18:118]
