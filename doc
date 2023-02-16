@@ -277,7 +277,7 @@ WHERE nom LIKE '%illa%';
   
 
 
-## APARTAT 5: Llei d'hondt:
+## APARTAT 4: Llei d'hondt:
 
 Implementa un programa que mostri el nº d’escons per una província passada per paràmetre.
 
