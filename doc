@@ -146,6 +146,7 @@ Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 0
 
     		select1 = mycursor.execute("SELECT municipi_id FROM municipis")
     		municipi_id = mycursor.fetchone()
+		municipi_id = " ".join(map(str,municipi_id))
 
     		select2 = mycursor.execute("SELECT candidatura_id FROM candidatures")
     		candidatura_id = mycursor.fetchone()
@@ -175,6 +176,7 @@ Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 0
     
     		select3 = mycursor.execute("SELECT provincia_id FROM provincies")
     		provincia_id = mycursor.fetchone()
+		provincia_id = " ".join(map(str,provincia_id))
 
 
     		select4 = mycursor.execute("SELECT candidatura_id FROM candidatures")
@@ -191,7 +193,7 @@ Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 0
 	mydb.commit()
 
 
-### Importació de vots a nivell autonòmic:  (***************** DA ERROR ****************)
+### Importació de vots a nivell autonòmic: 
 
 	mycursor = mydb.cursor(buffered=True)
 
