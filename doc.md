@@ -267,7 +267,7 @@ Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 0
 
 ### Categoria 1: 5 preguntes de consultes simples: inclou una sola taula, funcions, funcions d'agregat o grups:
 
-Mostrar candidatura_id, codi_candidatura, nom_curt, nom_llarg de les candidatures les quals en el seu nom contingui partido socialista i ordena per candidatura_id.
+##### Mostrar candidatura_id, codi_candidatura, nom_curt, nom_llarg de les candidatures les quals en el seu nom contingui partido socialista i ordena per candidatura_id.
 
 SELECT candidatura_id, codi_candidatura, nom_curt, nom_llarg
 	FROM candidatures
@@ -276,7 +276,7 @@ ORDER BY candidatura_id;
 
 /*-------------------------------------------------------------------------*/
 
-Mostrar el codi INE d'Extremadura.
+##### Mostrar el codi INE d'Extremadura.
 
 SELECT codi_ine AS codi_INE_extremadura
 	FROM comunitats_autonomes
@@ -284,7 +284,7 @@ WHERE nom = 'extremadura';
 
 /*-------------------------------------------------------------------------*/
 
-Mostrar candidat_id, persona_id, provincia_id dels candidats que el seu ID estigui entre 6 i 15.
+##### Mostrar candidat_id, persona_id, provincia_id dels candidats que el seu ID estigui entre 6 i 15.
 
 SELECT candidat_id, persona_id, provincia_id
 	FROM candidats
@@ -292,7 +292,7 @@ WHERE candidat_id BETWEEN 6 AND 15;
 
 /*-------------------------------------------------------------------------*/
 
-Mostrar persona_id, cog1, cog2, nom de les persones que tinguin com a primer cognom Martínez o Ruiz i ordenar-lo per ID.
+##### Mostrar persona_id, cog1, cog2, nom de les persones que tinguin com a primer cognom Martínez o Ruiz i ordenar-lo per ID.
 
 SELECT persona_id, cog1, cog2, nom
 	FROM persones
@@ -301,7 +301,7 @@ ORDER BY persona_id;
 
 /*-------------------------------------------------------------------------*/
 
-Mostrar  provincia_id, nom, codi_ine de les provincies que en el seu nom continguin 'illa'.
+##### Mostrar  provincia_id, nom, codi_ine de les provincies que en el seu nom continguin 'illa'.
 
 SELECT provincia_id, nom, codi_ine
 	FROM provincies
