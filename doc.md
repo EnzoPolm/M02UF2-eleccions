@@ -1,4 +1,4 @@
-###### Eleccions generals 
+#### Eleccions generals 
 ## APARTAT 1: Importació de les dades
 ### Modificació de l'script sql
 	Per poder posar la taula de persones hem hagut de posar persona_id com a AUTO_INCREMENT i el dni com a NULLABLE i sense la UK
