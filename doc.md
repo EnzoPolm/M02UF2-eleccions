@@ -301,12 +301,20 @@ ORDER BY persona_id;
 
 /*-------------------------------------------------------------------------*/
 
-Mostrar  provincia_id, nom, codi_ine de les provincies que en el seu nom continguin 'illa'.
+## Mostrar  provincia_id, nom, codi_ine de les provincies que en el seu nom continguin 'illa'.
 
 SELECT provincia_id, nom, codi_ine
 	FROM provincies
 WHERE nom LIKE '%illa%';
 
+## Quin és el numero de municipis de cada provincia d'Andalucia?
+
+SELECT p.nom AS provincia, COUNT(m.municipi_id) AS num_municipis
+FROM provincies p
+LEFT JOIN municipis m ON p.provincia_id = m.provincia_id
+LEFT JOIN comunitats_autonomes c ON p.comunitat_aut_id = c.comunitat_aut_id
+WHERE c.nom = 'Andalucía'
+GROUP BY p.provincia_id;
 
 ### Categoria 2: 5 preguntes de consultes de combinacions de més d'una taula: INNER JOINS, LEFT JOINS: 
 
