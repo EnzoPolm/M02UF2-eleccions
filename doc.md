@@ -313,8 +313,8 @@ WHERE nom LIKE '%illa%';
 Quines provincies pertanyen a la comunitat autonoma amb el codi INE(08)?
 
 SELECT p.nom ,c.codi_ine
-	FROM provincies p 
-INNER JOIN comunitats_autonomes c ON p.comunitat_aut_id = c.comunitat_aut_id 
+	FROM provincies p
+INNER JOIN comunitats_autonomes c ON p.comunitat_aut_id = c.comunitat_aut_id
 WHERE c.codi_ine = '08';
 
 
