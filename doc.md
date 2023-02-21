@@ -333,7 +333,7 @@ GROUP BY p.provincia_id;
 
 ### Categoria 4: 1 pregunta utilitzant WINDOW FUNCTIONS o recursivitat:
   
-
+ 
 
 ## APARTAT 4: Llei d'hondt:
 
