@@ -113,6 +113,7 @@ Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 0
 
 ### Importació de candidats i persones:
 	Persones:
+	f = open(r'C:\Users\Usurio\Desktop\02201606_MESA\04021606.DAT', 'r')
 	mycursor = mydb.cursor()
 
 	for i in f:
@@ -128,6 +129,7 @@ Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 0
 
 	
 	Candidats:
+	f = open(r'C:\Users\Usurio\Desktop\02201606_MESA\04021606.DAT', 'r')
 	mycursor = mydb.cursor()
 
 	for i in f:
