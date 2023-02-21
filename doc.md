@@ -299,7 +299,7 @@ SELECT provincia_id, nom, codi_ine
 WHERE nom LIKE '%illa%';
 
 
-### Categoria 2: 5 preguntes de consultes de combinacions de més d'una taula: INNER JOINS, LEFT JOINS:
+### Categoria 2: 5 preguntes de consultes de combinacions de més d'una taula: INNER JOINS, LEFT JOINS: 
 
 
 
