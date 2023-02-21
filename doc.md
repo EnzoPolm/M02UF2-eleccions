@@ -132,37 +132,45 @@ Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 0
 	f = open(r'C:\Users\Usurio\Desktop\02201606_MESA\04021606.DAT', 'r')
 	mycursor = mydb.cursor()
 
-	for i in f:
-	    numordre = i[21:24]
-	    tipus = i[24:25]
-	    candidaturacodi = i[15:21]
-	    nom = i[25:49]
-	    cognnom = i[50:74]
-	    segcognom = i[75:99]
-	    provinciacodi = i[9:11]
+	for i in archivo:
+		numordre = i[21:24]
+		tipus = i[24:25]
+		candidaturacodi = i[15:21]
+		nom = i[25:49]
+		cognnom = i[50:74]
+		segcognom = i[75:99]
+		provinciacodi = i[9:11]	
 
-	    select = "SELECT candidatura_id FROM candidatures WHERE codi_candidatura = %s"
-	    dades = [candidaturacodi]
-	    mycursor.execute(select,dades)
-	    candidatura_id = mycursor.fetchone()
-	    mycursor.nextset()
+		select = "SELECT candidatura_id FROM candidatures WHERE codi_candidatura = %s"
+		dades = [candidaturacodi]
+		mycursor.execute(select,dades)
+		candidatura_id = mycursor.fetchone()
+		candidatura_id = " ".join(map(str,candidatura_id))
 
-	    select1 = 'SELECT persona_id FROM persones WHERE nom = %s AND cog1 = %s AND cog2 = %s'
-	    dades1 = [nom.strip(),cognnom.strip(),segcognom.strip()]
-	    mycursor.execute(select1,dades1)
-	    persona_id = mycursor.fetchone()
-	    mycursor.nextset()
 
-	    select2 = 'SELECT provincia_id FROM provincies WHERE codi_ine = %s'
-	    dades2 = [provinciacodi]
-	    mycursor.execute(select2,dades2)
-	    provincia_id = mycursor.fetchone()
-	    mycursor.nextset()
 
-	    sql = "INSERT INTO candidats (candidatura_id,persona_id,provincia_id,num_ordre,tipus) VALUES (%s, %s, %s, %s, %s)"
-	    val = [candidatura_id[0],persona_id[0],provincia_id[0],numordre,tipus]
-	    mycursor.execute(sql, val)
-	    mydb.commit()
+		select1 = 'SELECT persona_id FROM persones WHERE nom = %s AND cog1 = %s AND cog2 = %s'
+		dades1 = [nom.strip(),cognnom.strip(),segcognom.strip()]
+		mycursor.execute(select1,dades1)
+		persona_id = mycursor.fetchone()
+		persona_id = " ".join(map(str,persona_id))
+
+
+
+		select2 = 'SELECT provincia_id FROM provincies WHERE codi_ine = %s'
+		dades2 = [provinciacodi]
+		mycursor.execute(select2,dades2)
+		provincia_id = mycursor.fetchone()
+		provincia_id = " ".join(map(str,provincia_id))
+
+
+
+		sql = "INSERT INTO candidats (candidatura_id,persona_id,provincia_id,num_ordre,tipus) VALUES (%s, %s, %s, %s, %s)"
+		val = [candidatura_id,persona_id,provincia_id,numordre,tipus]
+		mycursor.execute(sql, val)
+	
+	
+	mydb.commit()
 
 
 ### Importació de vots a nivell municipal:
