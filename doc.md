@@ -310,6 +310,12 @@ WHERE nom LIKE '%illa%';
 
 ### Categoria 2: 5 preguntes de consultes de combinacions de més d'una taula: INNER JOINS, LEFT JOINS: 
 
+Quines provincies pertanyen a la comunitat autonoma amb el codi INE(08)?
+SELECT p.nom ,c.codi_ine
+	FROM provincies p 
+INNER JOIN comunitats_autonomes c ON p.comunitat_aut_id = c.comunitat_aut_id 
+WHERE c.codi_ine = '08';
+
 
 
 ### Categoria 3: 5 preguntes fent ús de subconsultes:
