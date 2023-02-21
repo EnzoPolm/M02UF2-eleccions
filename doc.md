@@ -130,7 +130,7 @@ Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 0
 	
 	Candidats:
 	f = open(r'C:\Users\Usurio\Desktop\02201606_MESA\04021606.DAT', 'r')
-	mycursor = mydb.cursor()
+	mycursor = mydb.cursor(buffered=True)
 
 	for i in archivo:
 		numordre = i[21:24]
