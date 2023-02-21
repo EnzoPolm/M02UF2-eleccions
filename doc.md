@@ -301,13 +301,13 @@ ORDER BY persona_id;
 
 /*-------------------------------------------------------------------------*/
 
-## Mostrar  provincia_id, nom, codi_ine de les provincies que en el seu nom continguin 'illa'.
+#### Mostrar  provincia_id, nom, codi_ine de les provincies que en el seu nom continguin 'illa'.
 
 SELECT provincia_id, nom, codi_ine
 	FROM provincies
 WHERE nom LIKE '%illa%';
 
-## Quin és el numero de municipis de cada provincia d'Andalucia?
+##### Quin és el numero de municipis de cada provincia d'Andalucia?
 
 SELECT p.nom AS provincia, COUNT(m.municipi_id) AS num_municipis
 FROM provincies p
