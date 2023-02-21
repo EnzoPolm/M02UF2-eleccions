@@ -1,8 +1,7 @@
-#Eleccions generals 
+Eleccions generals 
 ## APARTAT 1: Importació de les dades
 ### Modificació de l'script sql
 	Per poder posar la taula de persones hem hagut de posar persona_id com a AUTO_INCREMENT i el dni com a NULLABLE i sense la UK
-
 ### Introducció de dades bàsiques
 	Hem hagut d'insertar una elecció de la seguent manera:
 	INSERT INTO eleccions(nom,data)
@@ -62,7 +61,7 @@
 	Municipis:
 	
 	Hi han una sèrie de valors del codi INE dels municipis repetits i amb el mateix codi de districte, 
-	i per aixó hem optat per elimiar la contraint unique de la columna codi_ine amb la seguent snetència:
+	i per aixó hem optat per eliminar la constraint unique de la columna codi_ine amb la seguent sentència:
 	Alter table municipis 
 		DROP CONSTRAINT uk_municipis_codi_ine;
 	
