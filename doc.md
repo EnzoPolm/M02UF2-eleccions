@@ -208,12 +208,12 @@ archivo = open(r"C:\Users\david\Desktop\Pràctica BDD\mesa 0220160\07021606.dat"
 
     	if existing_record:
     		# Actualizar el registro existente con los valores nuevos
-        	update = ("UPDATE eleccions_municipis SET num_meses=%s, cens=%s, vots_emesos=%s, vots_valids=%s, vots_candidatures=%s, vots_blanc=%s, vots_nuls=%s WHERE eleccio_id=%s AND municipi_id=%s")
+        		update = ("UPDATE eleccions_municipis SET num_meses=%s, cens=%s, vots_emesos=%s, vots_valids=%s, vots_candidatures=%s, vots_blanc=%s, vots_nuls=%s WHERE eleccio_id=%s AND municipi_id=%s")
        	 	valores = [num_mesa, cens, vots_emesos, vots_valids, vots_candidatures, vots_blanc, vots_nuls, fetch, fetch1]
        	 		mycursor.execute(update, valores)
     	else:
-   	 	# Insertar un nuevo registro
-        	insert = ("INSERT INTO eleccions_municipis (eleccio_id, municipi_id, num_meses, cens, vots_emesos, vots_valids, vots_candidatures, vots_blanc, vots_nuls) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)")
+   	 		# Insertar un nuevo registro
+        		insert = ("INSERT INTO eleccions_municipis (eleccio_id, municipi_id, num_meses, cens, vots_emesos, vots_valids, vots_candidatures, vots_blanc, vots_nuls) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)")
         		valores = [fetch, fetch1, num_mesa, cens, vots_emesos, vots_valids, vots_candidatures, vots_blanc, vots_nuls]
         		mycursor.execute(insert, valores)
 
