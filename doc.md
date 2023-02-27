@@ -181,7 +181,7 @@ archivo = open(r"C:\Users\david\Desktop\Pràctica BDD\mesa 0220160\07021606.dat"
     	num_mesa = x[72:77]
     	cens = x[77:85]
     	vots_emesos = x[109:117]
-   	vots_candidatures = x[141:149]
+   		vots_candidatures = x[141:149]
     	vots_blanc = x[125:133]
     	vots_nuls = x[133:141]
 
@@ -190,7 +190,7 @@ archivo = open(r"C:\Users\david\Desktop\Pràctica BDD\mesa 0220160\07021606.dat"
     	fetch = mycursor.fetchone()
     	fetch = " ".join(map(str,fetch))
 
-	select1 = mycursor.execute("SELECT municipi_id FROM municipis")
+		select1 = mycursor.execute("SELECT municipi_id FROM municipis")
     	fetch1 = mycursor.fetchone()
     	fetch1 = " ".join(map(str,fetch1))
 
