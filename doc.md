@@ -171,6 +171,56 @@ Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 0
 	
 	
 	mydb.commit()
+### Importació de la taula eleccions_municipis:
+
+	mycursor = mydb.cursor(buffered=True)
+
+	archivo = open(r"C:\Users\david\Desktop\Pràctica BDD\mesa 0220160\07021606.dat")
+
+	for x in archivo:
+    	num_mesa = x[72:77]
+    	cens = x[77:85]
+    	vots_emesos = x[109:117]
+   	 vots_candidatures = x[141:149]
+    	vots_blanc = x[125:133]
+    	vots_nuls = x[133:141]
+
+
+    	select = mycursor.execute("SELECT eleccio_id FROM eleccions")
+    	fetch = mycursor.fetchone()
+    	fetch = " ".join(map(str,fetch))
+
+	    select1 = mycursor.execute("SELECT municipi_id FROM municipis")
+    	fetch1 = mycursor.fetchone()
+    	fetch1 = " ".join(map(str,fetch1))
+
+    	select2 = mycursor.execute("SELECT (vots_candidatures + vots_nuls) AS vots_valids FROM eleccions_municipis")
+    	vots_valids = mycursor.fetchone()
+    	vots_valids = " ".join(map(str,vots_valids))
+
+    	print(fetch, ",", fetch1,",", num_mesa.strip(), ",", cens.strip(), ",", vots_emesos.strip(), ",", vots_valids.strip(), ",", vots_candidatures.strip(), ",", vots_blanc.strip(), ",", vots_nuls)
+
+
+	for x in archivo:
+  	# Buscar un registro existente con los mismos valores de eleccio_id y municipi_id
+    	select = mycursor.execute("SELECT * FROM eleccions_municipis WHERE eleccio_id=%s AND municipi_id=%s", (fetch, fetch1))
+    	existing_record = mycursor.fetchone()
+
+    	if existing_record:
+    	# Actualizar el registro existente con los valores nuevos
+        	update = ("UPDATE eleccions_municipis SET num_meses=%s, cens=%s, vots_emesos=%s, vots_valids=%s, vots_candidatures=%s, vots_blanc=%s, vots_nuls=%s WHERE eleccio_id=%s AND municipi_id=%s")
+       	 valores = [num_mesa, cens, vots_emesos, vots_valids, vots_candidatures, vots_blanc, vots_nuls, fetch, fetch1]
+       	 mycursor.execute(update, valores)
+    else:
+    # Insertar un nuevo registro
+        insert = ("INSERT INTO eleccions_municipis (eleccio_id, municipi_id, num_meses, cens, vots_emesos, vots_valids, vots_candidatures, vots_blanc, vots_nuls) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)")
+        valores = [fetch, fetch1, num_mesa, cens, vots_emesos, vots_valids, vots_candidatures, vots_blanc, vots_nuls]
+        mycursor.execute(insert, valores)
+
+
+
+mydb.commit()
+print(mycursor.rowcount, "Se inserto correctamente!.")
 
 
 ### Importació de vots a nivell municipal:
