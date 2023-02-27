@@ -181,7 +181,7 @@ Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 0
     		num_mesa = x[72:77]
     		cens = x[77:85]
     		vots_emesos = x[109:117]
-   	 	vots_candidatures = x[141:149]
+   	 		vots_candidatures = x[141:149]
     		vots_blanc = x[125:133]
     		vots_nuls = x[133:141]
 
@@ -212,10 +212,10 @@ Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 0
        	 		valores = [num_mesa, cens, vots_emesos, vots_valids, vots_candidatures, vots_blanc, vots_nuls, fetch, fetch1]
        	 		mycursor.execute(update, valores)
     		else:
-   	 		# Insertar un nuevo registro
-        		insert = ("INSERT INTO eleccions_municipis (eleccio_id, municipi_id, num_meses, cens, vots_emesos, vots_valids, vots_candidatures, vots_blanc, vots_nuls) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)")
-        		valores = [fetch, fetch1, num_mesa, cens, vots_emesos, vots_valids, vots_candidatures, vots_blanc, vots_nuls]
-        		mycursor.execute(insert, valores)
+   	 			# Insertar un nuevo registro
+        			insert = ("INSERT INTO eleccions_municipis (eleccio_id, municipi_id, num_meses, cens, vots_emesos, vots_valids, vots_candidatures, vots_blanc, vots_nuls) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)")
+        			valores = [fetch, fetch1, num_mesa, cens, vots_emesos, vots_valids, vots_candidatures, vots_blanc, vots_nuls]
+        			mycursor.execute(insert, valores)
 
 
 
