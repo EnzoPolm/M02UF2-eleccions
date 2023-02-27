@@ -208,7 +208,7 @@ Per omplir la taula de candidatures, hem hagut d'utilitzar les dades del fixer 0
 
     		if existing_record:
     			# Actualizar el registro existente con los valores nuevos
-        		update = ("UPDATE eleccions_municipis SET num_meses=%s, cens=%s, vots_emesos=%s, vots_valids=%s, vots_candidatures=%s, vots_blanc=%s, vots_nuls=%s WHERE eleccio_id=%s AND municipi_id=%s")
+        			update = ("UPDATE eleccions_municipis SET num_meses=%s, cens=%s, vots_emesos=%s, vots_valids=%s, vots_candidatures=%s, vots_blanc=%s, vots_nuls=%s WHERE eleccio_id=%s AND municipi_id=%s")
        	 		valores = [num_mesa, cens, vots_emesos, vots_valids, vots_candidatures, vots_blanc, vots_nuls, fetch, fetch1]
        	 		mycursor.execute(update, valores)
     		else:
