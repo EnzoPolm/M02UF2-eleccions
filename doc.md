@@ -177,6 +177,18 @@ mycursor = mydb.cursor(buffered=True)
 
 archivo = open(r"C:\Users\david\Desktop\Pràctica BDD\mesa 0220160\07021606.dat")
 
+    	select = mycursor.execute("SELECT eleccio_id FROM eleccions")
+    	fetch = mycursor.fetchone()
+    	fetch = " ".join(map(str,fetch))
+
+		select1 = mycursor.execute("SELECT municipi_id FROM municipis")
+    	fetch1 = mycursor.fetchone()
+    	fetch1 = " ".join(map(str,fetch1))
+
+    	select2 = mycursor.execute("SELECT (vots_candidatures + vots_nuls) AS vots_valids FROM eleccions_municipis")
+    	vots_valids = mycursor.fetchone()
+    	vots_valids = " ".join(map(str,vots_valids))
+
 	for x in archivo:
     	num_mesa = x[72:77]
     	cens = x[77:85]
